@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>J-Juan Music Player</title>
+  <title>Music Player</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="header">
     <img src="logo.png" alt="Logo" class="logo">
     <h1>Music Player</h1>
-    <div class="search-container">
-      <input type="text" id="search-input" placeholder="Search for songs...">
-    </div>
+  </div>
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search for songs...">
   </div>
   <div class="main-container">
-    <div class="song-list">
-      <h2>Song List</h2>
-      <ul id="playlist"></ul>
+    <div class="playlist">
+      <h2>Playlist</h2>
+      <ul id="song-list"></ul>
     </div>
     <div class="my-playlist-container">
       <div class="my-playlist">
@@ -28,15 +28,15 @@
   </div>
   <div class="player-container">
     <div class="player">
-      <div class="song-title"><span></span></div>
-      <audio id="audio-player" controls></audio>
-      <div class="controls">
-        <button id="prev-btn"></button>
-        <button id="play-pause-btn" class="play"></button>
-        <button id="next-btn"></button>
-        <button id="shuffle-btn"></button>
-        <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="1">
+      <button id="prev-btn"></button>
+      <button id="play-pause-btn" class="play"></button>
+      <button id="next-btn"></button>
+      <button id="shuffle-btn"></button>
+      <div class="song-title">
+        <span id="song-title-text"></span>
       </div>
+      <audio id="audio-player" controls></audio>
+      <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01">
     </div>
   </div>
   <script src="script.js"></script>
