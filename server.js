@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs'); // Correct the import statement
 
 const app = express();
-const musicDir = path.join(__dirname, 'public', 'music');
+const musicDir = path.join(__dirname, 'music');
 
 // Serve static files like CSS and JS
 app.use(express.static(path.join(__dirname, 'public')));
