@@ -6,14 +6,14 @@
       "use": "@vercel/node"
     },
     {
-      "src": "music/*",
+      "src": "public/music/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
       "src": "/music/(.*)",
-      "dest": "/music/$1"
+      "dest": "/public/music/$1"
     },
     {
       "src": "/(.*)",
