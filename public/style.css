@@ -246,7 +246,8 @@ audio {
   top: 100px; /* Position it below the header */
   left: 15%; /* Adjust position by 15% */
   right: 35%; /* Adjust position by 15% */
-  max-height: calc(100vh - 200px); /* Adjust height to fit within the viewport */
+  height: calc(80vh - 200px); /* Set fixed height */
+  overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
 .song-list button {
@@ -298,12 +299,12 @@ audio {
 }
 
 .my-playlist-container {
-  width: 22.5%; /* Reduce width by 25% */
-  padding: 20px;
+  width: 23.5%; /* Reduce width by 25% */
   position: fixed; /* Fix the position */
   top: 100px; /* Position it below the header */
   right: 5%; /* Adjust position by 15% */
-  max-height: calc(100vh - 200px); /* Adjust height to fit within the viewport */
+  height: calc(150vh - 200px); /* Set fixed height */
+  overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
 .my-playlist {
@@ -311,8 +312,9 @@ audio {
   width: 100%;
   background-color: #1e1e1e; /* Add background color */
   border-radius: 10px; /* Add rounded edges */
-  padding: 40px; /* Increase padding by an inch */
+  padding: 1px; /* Increase padding by an inch */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+  min-height: 300px; /* Set minimum height */
 }
 
 .my-playlist h2 {
