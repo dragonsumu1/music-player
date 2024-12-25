@@ -10,15 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const volumeSlider = document.getElementById('volume-slider');
   const searchInput = document.getElementById('search');
   let currentSongIndex = 0;
-  let isShuffling = false;
+  let isShufflingSongs = false;
+  let isShufflingPlaylist = false;
   let songs = [];
   let playlistSongs = [];
+  let shuffledSongs = [];
+  let shuffledPlaylist = [];
+  let isPlaylistActive = false;
 
   // Fetch the list of songs from the server
   fetch('/api/music')
     .then(response => response.json())
     .then(data => {
       songs = data;
+      shuffledSongs = [...songs]; // Initialize shuffledSongs with the original list
       renderSongList();
     });
 
@@ -30,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       li.textContent = song;
 
       const addButton = document.createElement('button');
-      addButton.textContent = 'Add';
+      addButton.textContent = '+'; // Change text to "+"
       addButton.classList.add('add-btn');
       addButton.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -38,15 +43,44 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       li.appendChild(addButton);
-      li.addEventListener('click', () => playSong(index));
+      li.addEventListener('click', () => {
+        isPlaylistActive = false;
+        shuffledSongs = [...songs]; // Reset shuffledSongs to the original list
+        playSong(index);
+      });
       songList.appendChild(li);
+    });
+  }
+
+  // Render the playlist
+  function renderPlaylist() {
+    myPlaylist.innerHTML = '';
+    playlistSongs.forEach((song, index) => {
+      const li = document.createElement('li');
+      li.textContent = song;
+
+      const removeButton = document.createElement('button');
+      removeButton.textContent = 'Remove';
+      removeButton.classList.add('remove-btn');
+      removeButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        removeFromPlaylist(li, song);
+      });
+
+      li.appendChild(removeButton);
+      li.addEventListener('click', () => {
+        isPlaylistActive = true;
+        shuffledPlaylist = [...playlistSongs]; // Reset shuffledPlaylist to the playlist
+        playSong(index);
+      });
+      myPlaylist.appendChild(li);
     });
   }
 
   // Play the selected song
   function playSong(index) {
     currentSongIndex = index;
-    const song = songs[index];
+    const song = isPlaylistActive ? shuffledPlaylist[index] : shuffledSongs[index];
     audioPlayer.src = `/api/music/${song}`;
     audioPlayer.play();
     updateSongTitle(song);
@@ -61,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Update the active song in the list
   function updateActiveSong() {
-    const songItems = songList.querySelectorAll('li');
+    const songItems = isPlaylistActive ? myPlaylist.querySelectorAll('li') : songList.querySelectorAll('li');
     songItems.forEach((item, index) => {
       item.classList.toggle('active', index === currentSongIndex);
     });
@@ -70,20 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Add song to playlist
   function addToPlaylist(song) {
     playlistSongs.push(song);
-    const li = document.createElement('li');
-    li.textContent = song;
-
-    const removeButton = document.createElement('button');
-    removeButton.textContent = 'Remove';
-    removeButton.classList.add('remove-btn');
-    removeButton.addEventListener('click', (e) => {
-      e.stopPropagation();
-      removeFromPlaylist(li, song);
-    });
-
-    li.appendChild(removeButton);
-    li.addEventListener('click', () => playPlaylistSong(song));
-    myPlaylist.appendChild(li);
+    renderPlaylist();
   }
 
   // Remove song from playlist
@@ -92,14 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (index > -1) {
       playlistSongs.splice(index, 1);
     }
-    myPlaylist.removeChild(li);
+    renderPlaylist();
   }
 
-  // Play the selected song from the playlist
-  function playPlaylistSong(song) {
-    const index = songs.indexOf(song);
-    if (index > -1) {
-      playSong(index);
+  // Shuffle the list of songs or playlist
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
   }
 
@@ -129,20 +150,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Play the previous song
   prevBtn.addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+    currentSongIndex = (currentSongIndex - 1 + (isPlaylistActive ? shuffledPlaylist.length : shuffledSongs.length)) % (isPlaylistActive ? shuffledPlaylist.length : shuffledSongs.length);
     playSong(currentSongIndex);
   });
 
   // Play the next song
   nextBtn.addEventListener('click', () => {
-    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    currentSongIndex = (currentSongIndex + 1) % (isPlaylistActive ? shuffledPlaylist.length : shuffledSongs.length);
     playSong(currentSongIndex);
   });
 
-  // Toggle shuffle mode
+  // Toggle shuffle mode for songs
   shuffleBtn.addEventListener('click', () => {
-    isShuffling = !isShuffling;
-    shuffleBtn.classList.toggle('active', isShuffling);
+    if (isPlaylistActive) {
+      isShufflingPlaylist = !isShufflingPlaylist;
+      shuffleBtn.classList.toggle('active', isShufflingPlaylist);
+      if (isShufflingPlaylist) {
+        shuffledPlaylist = [...playlistSongs];
+        shuffleArray(shuffledPlaylist);
+      } else {
+        shuffledPlaylist = [...playlistSongs];
+      }
+      renderPlaylist();
+    } else {
+      isShufflingSongs = !isShufflingSongs;
+      shuffleBtn.classList.toggle('active', isShufflingSongs);
+      if (isShufflingSongs) {
+        shuffledSongs = [...songs];
+        shuffleArray(shuffledSongs);
+      } else {
+        shuffledSongs = [...songs];
+      }
+      renderSongList(shuffledSongs);
+    }
   });
 
   // Adjust volume
@@ -152,11 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle song end event
   audioPlayer.addEventListener('ended', () => {
-    if (isShuffling) {
-      currentSongIndex = Math.floor(Math.random() * songs.length);
-    } else {
-      currentSongIndex = (currentSongIndex + 1) % songs.length;
-    }
+    currentSongIndex = (currentSongIndex + 1) % (isPlaylistActive ? shuffledPlaylist.length : shuffledSongs.length);
     playSong(currentSongIndex);
   });
 

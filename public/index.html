@@ -8,14 +8,16 @@
 </head>
 <body>
   <div class="header">
-    <img src="logo.png" alt="Logo" class="logo">
-    <h1>Music Player</h1>
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo" class="logo">
+      <h1>Music Player</h1>
+    </div>
+    <div class="search-container" style="text-align: center;">
+      <input type="text" id="search" placeholder="Search for songs...">
+    </div>
   </div>
   <div class="main-container">
     <div class="song-list">
-      <div class="search-container">
-        <input type="text" id="search" placeholder="Search for songs...">
-      </div>
       <h2>Song List</h2>
       <ul id="song-list"></ul>
     </div>
