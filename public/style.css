@@ -130,6 +130,7 @@ body {
 .controls {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .control-btn {
@@ -157,32 +158,6 @@ button {
 
 button:hover {
   background-color: #333333;
-}
-
-button#prev-btn,
-button#next-btn {
-  background-color: transparent;
-  background-size: cover;
-  width: 30px; /* Ensure consistent size */
-  height: 30px; /* Ensure consistent size */
-  border: none; /* Remove border */
-  cursor: pointer;
-}
-
-button#prev-btn {
-  background-image: url('previous.png'); /* Ensure the path is correct */
-}
-
-button#prev-btn:hover {
-  background-color: transparent;
-}
-
-button#next-btn {
-  background-image: url('next.png'); /* Ensure the path is correct */
-}
-
-button#next-btn:hover {
-  background-color: transparent;
 }
 
 button.add-btn {
