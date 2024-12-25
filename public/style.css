@@ -170,8 +170,8 @@ body {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  width: 30px; /* Ensure consistent size */
-  height: 30px; /* Ensure consistent size */
+  width: 36px; /* Increase size by 20% */
+  height: 36px; /* Increase size by 20% */
   background-size: cover;
 }
 
@@ -185,13 +185,13 @@ button#shuffle-btn:hover {
 
 button {
   margin: 0 5px; /* Adjust margin */
-  padding: 5px 10px; /* Adjust padding */
+  padding: 6px 12px; /* Increase padding by 20% */
   border: none;
   border-radius: 50px;
   background-color: #282828;
   color: #ffffff;
   cursor: pointer;
-  font-size: 12px; /* Adjust font size */
+  font-size: 14.4px; /* Increase font size by 20% */
   transition: background-color 0.3s;
 }
 
@@ -200,8 +200,8 @@ button#next-btn,
 button#play-pause-btn {
   background-color: transparent;
   background-size: cover;
-  width: 30px; /* Ensure consistent size */
-  height: 30px; /* Ensure consistent size */
+  width: 36px; /* Increase size by 20% */
+  height: 36px; /* Increase size by 20% */
   border: none; /* Remove border */
   cursor: pointer;
 }
