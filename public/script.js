@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
   const playPauseBtn = document.getElementById('play-pause-btn');
-  const playIcon = document.getElementById('play-icon');
-  const pauseIcon = document.getElementById('pause-icon');
   let currentSongIndex = 0;
   let songs = [];
   let playlistSongs = [];
@@ -49,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlaylistActive = false;
         shuffledSongs = [...songs]; // Reset shuffledSongs to the original list
         Amplitude.playSongAtIndex(index);
+        highlightActiveSong(index);
       });
       songList.appendChild(li);
     });
@@ -74,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isPlaylistActive = true;
         shuffledPlaylist = [...playlistSongs]; // Reset shuffledPlaylist to the playlist
         Amplitude.playSongAtIndex(index);
+        highlightActiveSong(index, true);
       });
       myPlaylist.appendChild(li);
     });
@@ -111,23 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
     Amplitude.next();
   });
 
-  // Play/pause the current song
-  playPauseBtn.addEventListener('click', () => {
-    if (Amplitude.getPlayerState() === 'playing') {
-      Amplitude.pause();
-      playPauseBtn.classList.remove('playing');
-    } else {
-      Amplitude.play();
-      playPauseBtn.classList.add('playing');
-    }
-  });
-
-  // Update play/pause button icon based on player state
-  Amplitude.bind('play', () => {
-    playPauseBtn.classList.add('playing');
-  });
-
-  Amplitude.bind('pause', () => {
-    playPauseBtn.classList.remove('playing');
-  });
+  // Highlight the active song
+  function highlightActiveSong(index, isPlaylist = false) {
+    const listItems = isPlaylist ? myPlaylist.querySelectorAll('li') : songList.querySelectorAll('li');
+    listItems.forEach((li, i) => {
+      if (i === index) {
+        li.classList.add('active');
+      } else {
+        li.classList.remove('active');
+      }
+    });
+  }
 });

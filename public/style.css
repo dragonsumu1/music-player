@@ -191,7 +191,7 @@ button#play-pause-btn {
   background-image: url('play.png'); /* Default to play icon */
 }
 
-button#play-pause-btn.playing {
+button#play-pause-btn.amplitude-playing {
   background-image: url('pause.png'); /* Change to pause icon when playing */
 }
 
