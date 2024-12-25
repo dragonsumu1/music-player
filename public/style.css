@@ -429,7 +429,6 @@ audio {
   button#shuffle-btn {
     width: 40px; /* Adjust size for mobile */
     height: 40px; /* Adjust size for mobile */
-    margin: 5px; /* Adjust margin for mobile */
   }
 
   .song-list {
