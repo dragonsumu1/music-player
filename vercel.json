@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.js",
+      "src": "server.js",
       "use": "@vercel/node"
     },
     {
@@ -13,15 +13,15 @@
   "routes": [
     {
       "src": "/api/music/(.*)",
-      "dest": "/api/music/$1"
+      "dest": "/server.js"
     },
     {
       "src": "/api/profile/(.*)",
-      "dest": "/api/profile/$1"
+      "dest": "/server.js"
     },
     {
       "src": "/api/profiles",
-      "dest": "/api/profiles"
+      "dest": "/server.js"
     },
     {
       "src": "/(.*)",
