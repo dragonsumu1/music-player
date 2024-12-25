@@ -266,7 +266,7 @@ button.remove-btn:hover {
   top: 500px; /* Adjust top position to be below the playlist */
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
-  max-height: 40vh; /* Set maximum height */
+  max-height: 30vh; /* Set maximum height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
   background-color: #1e1e1e; /* Add background color */
   border-radius: 10px; /* Add rounded edges */
@@ -280,8 +280,8 @@ button.remove-btn:hover {
   border-radius: 10px; /* Add rounded edges */
   padding: 20px; /* Adjust padding */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  min-height: 300px; /* Set minimum height */
-  max-height: 15vh; /* Set maximum height */
+  min-height: 100px; /* Set minimum height */
+  max-height: 30vh; /* Set maximum height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
