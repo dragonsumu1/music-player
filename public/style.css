@@ -127,6 +127,13 @@ body {
   }
 }
 
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Add space between buttons and audio control */
+}
+
 .control-btn {
   background-color: transparent;
   border: none;
