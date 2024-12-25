@@ -52,6 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
       li.addEventListener('click', () => {
         isPlaylistActive = false;
         currentSongIndex = index;
+        // Stop the currently playing song
+        Amplitude.stop();
         Amplitude.init({
           songs: songs
         });
@@ -81,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
       li.addEventListener('click', () => {
         isPlaylistActive = true;
         currentSongIndex = index;
+        // Stop the currently playing song
+        Amplitude.stop();
         Amplitude.init({
           songs: playlistSongs
         });
