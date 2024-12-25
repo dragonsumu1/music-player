@@ -324,6 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Handle volume control
   volumeControl.addEventListener('input', function() {
-    Amplitude.setVolume(this.value);
+    Amplitude.setVolume(this.value / 100); // Amplitude volume is between 0 and 1
   });
 });
