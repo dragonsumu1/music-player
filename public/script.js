@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const shuffleBtn = document.getElementById('shuffle-btn');
   const songTitleText = document.getElementById('song-title-text');
   const volumeSlider = document.getElementById('volume-slider');
+  const searchInput = document.getElementById('search');
   let currentSongIndex = 0;
   let isShuffling = false;
   let songs = [];
@@ -22,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   // Render the list of songs
-  function renderSongList() {
+  function renderSongList(filteredSongs = songs) {
     songList.innerHTML = '';
-    songs.forEach((song, index) => {
+    filteredSongs.forEach((song, index) => {
       const li = document.createElement('li');
       li.textContent = song;
 
@@ -162,4 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update play/pause button state when audio is played or paused
   audioPlayer.addEventListener('play', updatePlayPauseButton);
   audioPlayer.addEventListener('pause', updatePlayPauseButton);
+
+  // Filter songs based on search input
+  searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filteredSongs = songs.filter(song => song.toLowerCase().includes(searchTerm));
+    renderSongList(filteredSongs);
+  });
 });
