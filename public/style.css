@@ -61,6 +61,7 @@ body {
 
 .main-container {
   display: flex;
+  flex-direction: column; /* Change to column for mobile */
   width: 100%;
   max-width: 1200px;
   margin-top: 100px; /* Adjust margin to account for fixed header */
@@ -237,16 +238,16 @@ audio {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  width: 50%; /* Set width to half of the container */
+  width: 100%; /* Change to 100% for mobile */
   background-color: #1e1e1e; /* Add background color */
   border-radius: 10px; /* Add rounded edges */
-  padding: 40px; /* Increase padding by an inch */
+  padding: 20px; /* Adjust padding */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  position: fixed; /* Fix the position */
-  top: 100px; /* Position it below the header */
-  left: 15%; /* Adjust position by 15% */
-  right: 35%; /* Adjust position by 15% */
-  height: calc(80vh - 200px); /* Set fixed height */
+  position: relative; /* Change to relative for mobile */
+  top: 0; /* Adjust position */
+  left: 0; /* Adjust position */
+  right: 0; /* Adjust position */
+  height: auto; /* Adjust height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
@@ -299,11 +300,12 @@ audio {
 }
 
 .my-playlist-container {
-  width: 23.5%; /* Reduce width by 25% */
-  position: fixed; /* Fix the position */
-  top: 100px; /* Position it below the header */
-  right: 5%; /* Adjust position by 15% */
-  height: calc(150vh - 200px); /* Set fixed height */
+  width: 100%; /* Change to 100% for mobile */
+  padding: 20px;
+  position: relative; /* Change to relative for mobile */
+  top: 0; /* Adjust position */
+  right: 0; /* Adjust position */
+  height: auto; /* Adjust height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
@@ -312,7 +314,7 @@ audio {
   width: 100%;
   background-color: #1e1e1e; /* Add background color */
   border-radius: 10px; /* Add rounded edges */
-  padding: 1px; /* Increase padding by an inch */
+  padding: 20px; /* Adjust padding */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
   min-height: 300px; /* Set minimum height */
 }
@@ -375,4 +377,50 @@ audio {
   background: #ffffff;
   cursor: pointer;
   border-radius: 50%;
+}
+
+/* Media queries for mobile devices */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack header elements vertically */
+    align-items: center;
+  }
+
+  .header .logo-container {
+    margin-bottom: 10px; /* Add margin to separate elements */
+  }
+
+  .search-container {
+    width: 100%; /* Full width for mobile */
+    transform: translateX(0); /* Reset transform */
+  }
+
+  .main-container {
+    padding: 10px; /* Adjust padding */
+  }
+
+  .player-container {
+    padding: 10px; /* Adjust padding */
+  }
+
+  .player {
+    flex-direction: column; /* Stack player elements vertically */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .controls {
+    margin: 10px 0; /* Adjust margin */
+  }
+
+  .song-list {
+    padding: 20px; /* Adjust padding */
+  }
+
+  .my-playlist-container {
+    padding: 20px; /* Adjust padding */
+  }
+
+  .my-playlist {
+    padding: 20px; /* Adjust padding */
+  }
 }
