@@ -263,7 +263,7 @@ button.remove-btn:hover {
   max-width: 600px; /* Set maximum width */
   padding: 20px;
   position: fixed; /* Fix the position */
-  top: 500px; /* Adjust top position to be below the playlist */
+  top: 440px; /* Adjust top position to be below the playlist */
   left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
   max-height: 30vh; /* Set maximum height */
