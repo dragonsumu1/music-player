@@ -1,0 +1,42 @@
+{
+  "sample": {
+    "playlist": [
+      {
+        "name": "Billie Eilish - BIRDS OF A FEATHER (Official Lyric Video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/Billie Eilish - BIRDS OF A FEATHER (Official Lyric Video).mp3"
+      },
+      {
+        "name": "flowerovlove - breaking news (Lyric Video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/flowerovlove - breaking news (Lyric Video).mp3"
+      },
+      {
+        "name": "hangin - yno (official lyric video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/hangin - yno (official lyric video).mp3"
+      }
+    ]
+  },
+  "samples": {
+    "playlist": [
+      {
+        "name": "Billie Eilish - BIRDS OF A FEATHER (Official Lyric Video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/Billie Eilish - BIRDS OF A FEATHER (Official Lyric Video).mp3"
+      },
+      {
+        "name": "flowerovlove - breaking news (Lyric Video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/flowerovlove - breaking news (Lyric Video).mp3"
+      },
+      {
+        "name": "hangin - yno (official lyric video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/hangin - yno (official lyric video).mp3"
+      },
+      {
+        "name": "Peach Tree Rascals - Mariposa (Lyrics).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/Peach Tree Rascals - Mariposa (Lyrics).mp3"
+      },
+      {
+        "name": "ROSÉ & Bruno Mars - APT. (Lyrics).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/ROSÉ & Bruno Mars - APT. (Lyrics).mp3"
+      }
+    ]
+  }
+}

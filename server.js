@@ -4,6 +4,10 @@ const fs = require('fs');
 
 const app = express();
 const musicDir = path.join(__dirname, 'music');
+const profilesFile = path.join(__dirname, 'profiles.json');
+
+// Middleware to parse JSON bodies
+app.use(express.json());
 
 // Serve static files like CSS and JS
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,6 +39,62 @@ app.get('/api/music', (req, res) => {
   });
 });
 
+// Get user profile
+app.get('/api/profile/:username', (req, res) => {
+  const username = req.params.username;
+  fs.readFile(profilesFile, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Failed to read profiles file:', err);
+      return res.status(500).json({ error: 'Failed to read profiles file' });
+    }
+    const profiles = JSON.parse(data);
+    const profile = profiles[username];
+    if (profile) {
+      res.json(profile);
+    } else {
+      res.status(404).json({ error: 'Profile not found' });
+    }
+  });
+});
+
+// Create or update user profile
+app.post('/api/profile/:username', (req, res) => {
+  const username = req.params.username;
+  const { playlist } = req.body;
+
+  console.log(`Saving profile for ${username}:`, req.body);
+
+  fs.readFile(profilesFile, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Failed to read profiles file:', err);
+      return res.status(500).json({ error: 'Failed to read profiles file' });
+    }
+
+    const profiles = JSON.parse(data);
+    profiles[username] = { playlist };
+
+    fs.writeFile(profilesFile, JSON.stringify(profiles, null, 2), (err) => {
+      if (err) {
+        console.error('Failed to write profiles file:', err);
+        return res.status(500).json({ error: 'Failed to write profiles file' });
+      }
+      res.json({ message: 'Profile saved', playlist: profiles[username].playlist });
+    });
+  });
+});
+
+// List all profiles
+app.get('/api/profiles', (req, res) => {
+  fs.readFile(profilesFile, 'utf8', (err, data) => {
+    if (err) {
+      console.error('Failed to read profiles file:', err);
+      return res.status(500).json({ error: 'Failed to read profiles file' });
+    }
+    const profiles = JSON.parse(data);
+    res.json(profiles);
+  });
+});
+
 // Serve the index.html page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -47,3 +107,5 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
+

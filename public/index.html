@@ -21,7 +21,17 @@
     <div class="my-playlist-container">
       <div class="my-playlist" style="text-align: center;">
         <h2>My Playlist</h2>
+        <div class="profile-container">
+          <input type="text" id="profile" placeholder="Enter profile name">
+          <button id="create-profile-btn">Create/Save Profile</button>
+          <button id="save-profile-btn">Show Profile</button>
+          <button id="list-profiles-btn">List of Profiles</button>
+        </div>
         <ul id="my-playlist"></ul>
+        <div id="profiles-list" style="display: none;">
+          <h3>Profiles</h3>
+          <ul id="profiles"></ul>
+        </div>
       </div>
     </div>
     <div class="song-list">
@@ -38,6 +48,7 @@
         <button id="prev-btn" class="amplitude-prev"></button>
         <button id="play-pause-btn" class="amplitude-play-pause" data-amplitude-play-pause></button>
         <button id="next-btn" class="amplitude-next"></button>
+        <input type="range" class="volume-slider" min="0" max="100" value="50" id="volume-control">
       </div>
     </div>
   </div>

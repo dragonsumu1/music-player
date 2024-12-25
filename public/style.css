@@ -70,6 +70,39 @@ body {
   align-items: center; /* Center the main container horizontally */
 }
 
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-container input {
+  width: 200px;
+  padding: 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #ffffff; /* Ensure font color is white */
+  background-color: #282828; /* Ensure background color matches the design */
+}
+
+.profile-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #1db954;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.profile-container button:hover {
+  background-color: #1aa34a;
+}
+
 .player-container {
   width: 100%;
   padding: 10px; /* Adjust padding */
@@ -222,21 +255,31 @@ button.remove-btn:hover {
   background-color: #ff6b81;
 }
 
+/* Ensure the song list is scrollable and has a maximum height */
 .song-list {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px; /* Adjust margin to account for new position */
   width: 100%; /* Change to 100% for mobile */
   max-width: 600px; /* Set maximum width */
+  padding: 20px;
+  position: fixed; /* Fix the position */
+  top: 500px; /* Adjust top position to be below the playlist */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  max-height: 40vh; /* Set maximum height */
+  overflow-y: auto; /* Add vertical scroll if content overflows */
+  background-color: #1e1e1e; /* Add background color */
+  border-radius: 10px; /* Add rounded edges */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+/* Ensure the playlist is scrollable and has a maximum height */
+.my-playlist {
+  width: 90%;
   background-color: #1e1e1e; /* Add background color */
   border-radius: 10px; /* Add rounded edges */
   padding: 20px; /* Adjust padding */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  position: relative; /* Change to relative for mobile */
-  top: 0; /* Adjust position */
-  left: 45%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-  height: auto; /* Adjust height */
+  min-height: 300px; /* Set minimum height */
+  max-height: 15vh; /* Set maximum height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
@@ -292,22 +335,12 @@ button.remove-btn:hover {
   width: 100%; /* Change to 100% for mobile */
   max-width: 600px; /* Set maximum width */
   padding: 20px;
-  position: relative; /* Change to relative for mobile */
-  top: 0; /* Adjust position */
-  left: 45%; /* Center horizontally */
+  position: fixed; /* Fix the position */
+  top: 100px; /* Adjust top position to account for header */
+  left: 50%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
   height: auto; /* Adjust height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
-}
-
-.my-playlist {
-  margin-top: 300px; /* Adjust margin to account for new position */
-  width: 100%;
-  background-color: #1e1e1e; /* Add background color */
-  border-radius: 10px; /* Add rounded edges */
-  padding: 20px; /* Adjust padding */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  min-height: 300px; /* Set minimum height */
 }
 
 .my-playlist h2 {
@@ -338,7 +371,8 @@ button.remove-btn:hover {
 }
 
 .volume-slider {
-  display: none; /* Hide the volume slider */
+  width: 100px; /* Set the width of the volume slider */
+  margin-left: 10px; /* Add some margin to the left */
 }
 
 /* Media queries for mobile devices */
