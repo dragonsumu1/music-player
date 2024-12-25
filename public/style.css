@@ -94,6 +94,7 @@ body {
   width: 100%;
   max-width: 1200px;
   position: relative; /* Add relative positioning */
+  flex-wrap: wrap; /* Allow wrapping of elements */
 }
 
 .song-title {
@@ -128,6 +129,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0 10px; /* Adjust margin */
+  flex-wrap: wrap; /* Allow wrapping of control buttons */
 }
 
 button {
@@ -155,8 +157,10 @@ button#shuffle-btn {
   width: 50px; /* Ensure consistent size */
   height: 50px; /* Ensure consistent size */
   border: none; /* Remove border */
-  position: fixed; /* Add fixed positioning */
-  bottom: 20px; /* Adjust position */
+  position: relative; /* Change to relative positioning */
+  bottom: auto; /* Reset position */
+  left: auto; /* Reset position */
+  transform: none; /* Reset transform */
 }
 
 button#play-pause-btn {
@@ -351,9 +355,9 @@ audio {
 }
 
 .volume-slider {
-  position: fixed; /* Fix the position */
-  right: 380px; /* Position it 20px from the right */
-  bottom: 40px; /* Position it 20px from the bottom */
+  position: relative; /* Change to relative positioning */
+  right: auto; /* Reset position */
+  bottom: auto; /* Reset position */
   width: 100px;
   -webkit-appearance: none;
   appearance: none;
@@ -414,6 +418,17 @@ audio {
 
   .controls {
     margin: 10px 0; /* Adjust margin */
+    flex-direction: row; /* Arrange control buttons in a row */
+    justify-content: space-around; /* Distribute control buttons evenly */
+  }
+
+  button#play-pause-btn,
+  button#prev-btn,
+  button#next-btn,
+  button#shuffle-btn {
+    width: 40px; /* Adjust size for mobile */
+    height: 40px; /* Adjust size for mobile */
+    margin: 5px; /* Adjust margin for mobile */
   }
 
   .song-list {
