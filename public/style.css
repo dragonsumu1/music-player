@@ -231,11 +231,8 @@ audio {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add box shadow */
   position: fixed; /* Fix the position */
   top: 100px; /* Position it below the header */
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  overflow-y: auto; /* Add vertical scroll */
+  left: 15%; /* Adjust position by 15% */
+  right: 35%; /* Adjust position by 15% */
   max-height: calc(100vh - 200px); /* Adjust height to fit within the viewport */
 }
 
@@ -286,12 +283,11 @@ audio {
 }
 
 .my-playlist-container {
-  width: 30%;
+  width: 22.5%; /* Reduce width by 25% */
   padding: 20px;
   position: fixed; /* Fix the position */
   top: 100px; /* Position it below the header */
-  right: 0;
-  overflow-y: auto; /* Add vertical scroll */
+  right: 5%; /* Adjust position by 15% */
   max-height: calc(100vh - 200px); /* Adjust height to fit within the viewport */
 }
 
