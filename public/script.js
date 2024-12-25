@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const songList = document.getElementById('song-list');
   const myPlaylist = document.getElementById('my-playlist');
   const audioPlayer = document.getElementById('audio-player');
+  const audioSource = document.getElementById('audio-source');
   const playPauseBtn = document.getElementById('play-pause-btn');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
@@ -81,7 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function playSong(index) {
     currentSongIndex = index;
     const song = isPlaylistActive ? shuffledPlaylist[index] : shuffledSongs[index];
-    audioPlayer.src = `/api/music/${song}`;
+    audioSource.src = `https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/${song}`;
+    audioPlayer.load();
     audioPlayer.play();
     updateSongTitle(song);
     updateActiveSong();

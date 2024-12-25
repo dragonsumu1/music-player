@@ -37,7 +37,10 @@
       <div class="song-title">
         <span id="song-title-text"></span>
       </div>
-      <audio id="audio-player" controls></audio>
+      <audio id="audio-player" controls>
+        <source id="audio-source" src="" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
       <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01">
     </div>
   </div>
