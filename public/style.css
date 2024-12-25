@@ -225,7 +225,7 @@ button.remove-btn:hover {
 .song-list {
   display: flex;
   flex-direction: column;
-  margin-top: 300px;
+  margin-top: 20px; /* Adjust margin to account for new position */
   width: 100%; /* Change to 100% for mobile */
   max-width: 600px; /* Set maximum width */
   background-color: #1e1e1e; /* Add background color */
@@ -293,15 +293,15 @@ button.remove-btn:hover {
   max-width: 600px; /* Set maximum width */
   padding: 20px;
   position: relative; /* Change to relative for mobile */
-  top: 20px; /* Adjust position */
-  left: 50%; /* Center horizontally */
+  top: 0; /* Adjust position */
+  left: 45%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
   height: auto; /* Adjust height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
 }
 
 .my-playlist {
-  margin-top: 20px;
+  margin-top: 300px; /* Adjust margin to account for new position */
   width: 100%;
   background-color: #1e1e1e; /* Add background color */
   border-radius: 10px; /* Add rounded edges */
