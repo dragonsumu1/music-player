@@ -161,7 +161,8 @@ button:hover {
 }
 
 button#prev-btn,
-button#next-btn {
+button#next-btn,
+button#play-pause-btn {
   background-color: transparent;
   background-size: cover;
   width: 30px; /* Ensure consistent size */
@@ -183,6 +184,18 @@ button#next-btn {
 }
 
 button#next-btn:hover {
+  background-color: transparent;
+}
+
+button#play-pause-btn {
+  background-image: url('play.png'); /* Default to play icon */
+}
+
+button#play-pause-btn.playing {
+  background-image: url('pause.png'); /* Change to pause icon when playing */
+}
+
+button#play-pause-btn:hover {
   background-color: transparent;
 }
 

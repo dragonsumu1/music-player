@@ -4,6 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('search');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
+  const playPauseBtn = document.getElementById('play-pause-btn');
+  const playIcon = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
   let currentSongIndex = 0;
   let songs = [];
   let playlistSongs = [];
@@ -106,5 +109,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // Play the next song
   nextBtn.addEventListener('click', () => {
     Amplitude.next();
+  });
+
+  // Play/pause the current song
+  playPauseBtn.addEventListener('click', () => {
+    if (Amplitude.getPlayerState() === 'playing') {
+      Amplitude.pause();
+      playPauseBtn.classList.remove('playing');
+    } else {
+      Amplitude.play();
+      playPauseBtn.classList.add('playing');
+    }
+  });
+
+  // Update play/pause button icon based on player state
+  Amplitude.bind('play', () => {
+    playPauseBtn.classList.add('playing');
+  });
+
+  Amplitude.bind('pause', () => {
+    playPauseBtn.classList.remove('playing');
   });
 });
