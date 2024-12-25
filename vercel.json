@@ -17,11 +17,11 @@
     },
     {
       "src": "/api/profile/(.*)",
-      "dest": "/server.js/$1"
+      "dest": "/api/profile/$1"
     },
     {
       "src": "/api/profiles",
-      "dest": "/server.js/profiles"
+      "dest": "/api/profiles"
     },
     {
       "src": "/(.*)",
