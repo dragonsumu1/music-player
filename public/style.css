@@ -233,7 +233,7 @@ audio {
 
 .song-list button {
   display: block;
-  width: 100%;
+  width: auto;
   margin: 5px 0;
   padding: 10px;
   background-color: #282828;

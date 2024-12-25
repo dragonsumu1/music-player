@@ -26,6 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
     songs.forEach((song, index) => {
       const li = document.createElement('li');
       li.textContent = song;
+
+      const addButton = document.createElement('button');
+      addButton.textContent = 'Add';
+      addButton.classList.add('add-btn');
+      addButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        addToPlaylist(song);
+      });
+
+      li.appendChild(addButton);
       li.addEventListener('click', () => playSong(index));
       songList.appendChild(li);
     });
@@ -52,6 +62,25 @@ document.addEventListener('DOMContentLoaded', () => {
     songItems.forEach((item, index) => {
       item.classList.toggle('active', index === currentSongIndex);
     });
+  }
+
+  // Add song to playlist
+  function addToPlaylist(song) {
+    const li = document.createElement('li');
+    li.textContent = song;
+
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Remove';
+    removeButton.classList.add('remove-btn');
+    removeButton.addEventListener('click', () => removeFromPlaylist(li));
+
+    li.appendChild(removeButton);
+    myPlaylist.appendChild(li);
+  }
+
+  // Remove song from playlist
+  function removeFromPlaylist(li) {
+    myPlaylist.removeChild(li);
   }
 
   // Play or pause the audio
