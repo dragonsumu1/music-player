@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Highlight the active song
     highlightActiveSong(currentSongIndex, isPlaylistActive);
   });
+  
 
   // Highlight the active song
   function highlightActiveSong(index, isPlaylist = false) {
@@ -185,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Profile not found');
       });
   }
+  
 
   // Show profile
   function showProfile() {
@@ -196,43 +198,43 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProfile(username);
   }
 
-  // Save profile
-  function saveProfile() {
-    const username = profileInput.value;
-    if (!username) {
-      alert('Please enter a profile name');
-      return;
-    }
-
-    // Ensure proper serialization of playlistSongs
-    const serializedPlaylist = playlistSongs.map(song => ({
-      name: song.name,
-      url: song.url
-    }));
-
-    fetch(`/api/profile/${username}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ playlist: serializedPlaylist })
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to save profile');
-        }
-        return response.json();
-      })
-      .then(data => {
-        alert('Profile saved');
-        // Reload the profile after saving to update the playlist
-        loadProfile(username);
-      })
-      .catch(err => {
-        console.error('Failed to save profile:', err);
-        alert('Failed to save profile');
-      });
+// Save profile
+function saveProfile() {
+  const username = profileInput.value;
+  if (!username) {
+    alert('Please enter a profile name');
+    return;
   }
+
+  // Ensure proper serialization of playlistSongs
+  const serializedPlaylist = playlistSongs.map(song => ({
+    name: song.name,
+    url: song.url
+  }));
+
+  fetch(`/api/profile/${username}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ playlist: serializedPlaylist })
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to save profile');
+      }
+      return response.json();
+    })
+    .then(data => {
+      alert('Profile saved');
+      // Reload the profile after saving to update the playlist
+      loadProfile(username);
+    })
+    .catch(err => {
+      console.error('Failed to save profile:', err);
+      alert('Failed to save profile');
+    });
+}
 
   // Create profile
   function createProfile() {
