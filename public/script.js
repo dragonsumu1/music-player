@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentSongIndex = 0;
   let isShuffling = false;
   let songs = [];
+  let playlistSongs = [];
 
   // Fetch the list of songs from the server
   fetch('/api/music')
@@ -66,21 +67,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add song to playlist
   function addToPlaylist(song) {
+    playlistSongs.push(song);
     const li = document.createElement('li');
     li.textContent = song;
 
     const removeButton = document.createElement('button');
     removeButton.textContent = 'Remove';
     removeButton.classList.add('remove-btn');
-    removeButton.addEventListener('click', () => removeFromPlaylist(li));
+    removeButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      removeFromPlaylist(li, song);
+    });
 
     li.appendChild(removeButton);
+    li.addEventListener('click', () => playPlaylistSong(song));
     myPlaylist.appendChild(li);
   }
 
   // Remove song from playlist
-  function removeFromPlaylist(li) {
+  function removeFromPlaylist(li, song) {
+    const index = playlistSongs.indexOf(song);
+    if (index > -1) {
+      playlistSongs.splice(index, 1);
+    }
     myPlaylist.removeChild(li);
+  }
+
+  // Play the selected song from the playlist
+  function playPlaylistSong(song) {
+    const index = songs.indexOf(song);
+    if (index > -1) {
+      playSong(index);
+    }
   }
 
   // Play or pause the audio
