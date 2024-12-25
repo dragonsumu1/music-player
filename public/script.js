@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let songs = [];
 
   // Fetch the list of songs from the server
-  fetch('/music')
+  fetch('/api/music')
     .then(response => response.json())
     .then(data => {
       songs = data;
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function playSong(index) {
     currentSongIndex = index;
     const song = songs[index];
-    audioPlayer.src = `/music/${song}`;
+    audioPlayer.src = `/api/music/${song}`;
     audioPlayer.play();
     updateSongTitle(song);
     updateActiveSong();

@@ -1,15 +1,15 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs'); // Correct the import statement
+const fs = require('fs');
 
 const app = express();
-const musicDir = path.join(__dirname, 'music');
+const musicDir = path.join(__dirname, 'music-player/music');
 
 // Serve static files like CSS and JS
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve music files
-app.get('/music/:song', (req, res) => {
+app.get('/api/music/:song', (req, res) => {
   const song = req.params.song;
   const songPath = path.join(musicDir, song);
   
@@ -24,7 +24,7 @@ app.get('/music/:song', (req, res) => {
 });
 
 // Serve the list of songs in the "music" folder
-app.get('/music', (req, res) => {
+app.get('/api/music', (req, res) => {
   fs.readdir(musicDir, (err, files) => {
     if (err) {
       console.error('Failed to read music directory:', err);
@@ -33,17 +33,6 @@ app.get('/music', (req, res) => {
     const songs = files.filter(file => path.extname(file) === '.mp3');
     res.json(songs);
   });
-});
-
-// Serve the index.html page
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
