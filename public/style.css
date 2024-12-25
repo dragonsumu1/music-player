@@ -220,7 +220,7 @@ audio {
   width: auto; /* Adjust width */
 }
 
-.playlist {
+.song-list {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -231,7 +231,7 @@ audio {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add box shadow */
 }
 
-.playlist button {
+.song-list button {
   display: block;
   width: 100%;
   margin: 5px 0;
@@ -246,17 +246,8 @@ audio {
   transition: background-color 0.3s;
 }
 
-.playlist button:hover {
+.song-list button:hover {
   background-color: #333333;
-}
-
-.song-list {
-  margin-top: 20px;
-  width: 1000000%;
-  background-color: #1e1e1e; /* Add background color */
-  border-radius: 10px; /* Add rounded edges */
-  padding: 40px; /* Increase padding by an inch */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add box shadow */
 }
 
 .song-list ul {
