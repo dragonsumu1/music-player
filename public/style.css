@@ -128,10 +128,20 @@ body {
 
 .controls {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 0 10px; /* Adjust margin */
-  flex-wrap: nowrap; /* Prevent wrapping of control buttons */
+  justify-content: center;
+  gap: 10px; /* Add space between buttons and audio control */
+}
+
+.control-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.control-btn img {
+  width: 30px; /* Set the size of the button images */
+  height: 30px;
 }
 
 button {
@@ -390,6 +400,11 @@ audio {
     flex-direction: column; /* Stack player elements vertically */
     padding: 10px; /* Adjust padding */
     align-items: center; /* Center elements horizontally */
+  }
+
+  .controls {
+    flex-direction: row; /* Arrange control buttons and audio control in a row */
+    justify-content: center; /* Center control buttons and audio control */
   }
 
   audio {

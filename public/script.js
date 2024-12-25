@@ -3,16 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const myPlaylist = document.getElementById('my-playlist');
   const audioPlayer = document.getElementById('audio-player');
   const audioSource = document.getElementById('audio-source');
-  const playPauseBtn = document.getElementById('play-pause-btn');
+  const songTitleText = document.getElementById('song-title-text');
+  const searchInput = document.getElementById('search');
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
-  const shuffleBtn = document.getElementById('shuffle-btn');
-  const songTitleText = document.getElementById('song-title-text');
-  const volumeSlider = document.getElementById('volume-slider');
-  const searchInput = document.getElementById('search');
   let currentSongIndex = 0;
-  let isShufflingSongs = false;
-  let isShufflingPlaylist = false;
   let songs = [];
   let playlistSongs = [];
   let shuffledSongs = [];
@@ -87,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     audioPlayer.play();
     updateSongTitle(song);
     updateActiveSong();
-    updatePlayPauseButton();
   }
 
   // Update the song title display
@@ -118,37 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPlaylist();
   }
 
-  // Shuffle the list of songs or playlist
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-  }
-
-  // Play or pause the audio
-  playPauseBtn.addEventListener('click', () => {
-    if (audioPlayer.paused) {
-      audioPlayer.play();
-      playPauseBtn.classList.remove('play');
-      playPauseBtn.classList.add('pause');
-    } else {
-      audioPlayer.pause();
-      playPauseBtn.classList.remove('pause');
-      playPauseBtn.classList.add('play');
-    }
+  // Handle song end event
+  audioPlayer.addEventListener('ended', () => {
+    currentSongIndex = (currentSongIndex + 1) % (isPlaylistActive ? shuffledPlaylist.length : shuffledSongs.length);
+    playSong(currentSongIndex);
   });
 
-  // Update the play/pause button state
-  function updatePlayPauseButton() {
-    if (audioPlayer.paused) {
-      playPauseBtn.classList.remove('pause');
-      playPauseBtn.classList.add('play');
-    } else {
-      playPauseBtn.classList.remove('play');
-      playPauseBtn.classList.add('pause');
-    }
-  }
+  // Filter songs based on search input
+  searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    const filteredSongs = songs.filter(song => song.toLowerCase().includes(searchTerm));
+    renderSongList(filteredSongs);
+  });
 
   // Play the previous song
   prevBtn.addEventListener('click', () => {
@@ -160,52 +135,5 @@ document.addEventListener('DOMContentLoaded', () => {
   nextBtn.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex + 1) % (isPlaylistActive ? shuffledPlaylist.length : shuffledSongs.length);
     playSong(currentSongIndex);
-  });
-
-  // Toggle shuffle mode for songs
-  shuffleBtn.addEventListener('click', () => {
-    if (isPlaylistActive) {
-      isShufflingPlaylist = !isShufflingPlaylist;
-      shuffleBtn.classList.toggle('active', isShufflingPlaylist);
-      if (isShufflingPlaylist) {
-        shuffledPlaylist = [...playlistSongs];
-        shuffleArray(shuffledPlaylist);
-      } else {
-        shuffledPlaylist = [...playlistSongs];
-      }
-      renderPlaylist();
-    } else {
-      isShufflingSongs = !isShufflingSongs;
-      shuffleBtn.classList.toggle('active', isShufflingSongs);
-      if (isShufflingSongs) {
-        shuffledSongs = [...songs];
-        shuffleArray(shuffledSongs);
-      } else {
-        shuffledSongs = [...songs];
-      }
-      renderSongList(shuffledSongs);
-    }
-  });
-
-  // Adjust volume
-  volumeSlider.addEventListener('input', (e) => {
-    audioPlayer.volume = e.target.value;
-  });
-
-  // Handle song end event
-  audioPlayer.addEventListener('ended', () => {
-    currentSongIndex = (currentSongIndex + 1) % (isPlaylistActive ? shuffledPlaylist.length : shuffledSongs.length);
-    playSong(currentSongIndex);
-  });
-
-  // Update play/pause button state when audio is played or paused
-  audioPlayer.addEventListener('play', updatePlayPauseButton);
-  audioPlayer.addEventListener('pause', updatePlayPauseButton);
-
-  // Filter songs based on search input
-  searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    const filteredSongs = songs.filter(song => song.toLowerCase().includes(searchTerm));
-    renderSongList(filteredSongs);
   });
 });

@@ -33,10 +33,18 @@
       <div class="song-title">
         <span id="song-title-text"></span>
       </div>
-      <audio id="audio-player" controls>
-        <source id="audio-source" src="" type="audio/mpeg">
-        Your browser does not support the audio element.
-      </audio>
+      <div class="controls">
+        <button id="prev-btn" class="control-btn">
+          <img src="previous.png" alt="Previous">
+        </button>
+        <audio id="audio-player" controls>
+          <source id="audio-source" src="" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <button id="next-btn" class="control-btn">
+          <img src="next.png" alt="Next">
+        </button>
+      </div>
     </div>
   </div>
   <script src="script.js"></script>
