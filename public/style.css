@@ -366,12 +366,12 @@ button.remove-btn:hover {
 
   audio {
     margin: 10px 0;
+    width: 100%; /* Ensures it takes up full width of the parent container */
     max-width: 600px; /* Limits the maximum width */
+    height: auto; /* Ensures the aspect ratio is maintained */
     display: block; /* Ensures it behaves like a block-level element */
     outline: none; /* Removes focus outline */
     visibility: visible; /* Explicitly set visibility */
-    width: auto; /* Adjust width */
-    height: auto; /* Adjust height */
   }
 
   .song-list {
