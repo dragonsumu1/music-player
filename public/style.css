@@ -339,7 +339,7 @@ button.remove-btn:hover {
 
   audio {
     margin: 10px 0;
-    width: 100%; /* Ensures it takes up full width of the parent container */
+    width: 500%; /* Ensures it takes up full width of the parent container */
     max-width: 600px; /* Limits the maximum width */
     height: auto; /* Ensures the aspect ratio is maintained */
     display: block !important; /* Ensures it behaves like a block-level element */
