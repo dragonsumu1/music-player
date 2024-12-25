@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/server.js",
+      "src": "server.js",
       "use": "@vercel/node"
     },
     {
@@ -17,11 +17,11 @@
     },
     {
       "src": "/api/profile/(.*)",
-      "dest": "/server.js/$1"
+      "dest": "/server.js"
     },
     {
       "src": "/api/profiles",
-      "dest": "/server.js/profiles"
+      "dest": "/server.js"
     },
     {
       "src": "/(.*)",
