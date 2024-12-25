@@ -172,12 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
     highlightActiveSong(currentSongIndex, isPlaylistActive);
   });
 
-  // Highlight the active song
+  // Highlight the active song and scroll it into view
   function highlightActiveSong(index, isPlaylist = false) {
     const listItems = isPlaylist ? myPlaylist.querySelectorAll('li') : songList.querySelectorAll('li');
     listItems.forEach((li, i) => {
       if (i === index) {
         li.classList.add('active');
+        li.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
         li.classList.remove('active');
       }
