@@ -1,4 +1,3 @@
-/* General styling */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background-color: #121212;
@@ -98,6 +97,7 @@ body {
   flex-wrap: nowrap; /* Prevent wrapping of elements */
 }
 
+/* Song title */
 .song-title {
   font-size: 14px; /* Adjust font size */
   margin: 0 10px; /* Adjust margin */
@@ -126,24 +126,28 @@ body {
   }
 }
 
+/* Controls section */
 .controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 10px; /* Adjust margin */
+  margin: 0 10px;
   flex-wrap: nowrap; /* Prevent wrapping of control buttons */
+  gap: 10px; /* Space between buttons */
 }
 
 button {
-  margin: 0 5px; /* Adjust margin */
-  padding: 5px 10px; /* Adjust padding */
+  margin: 0;
+  padding: 10px; /* Adjust padding */
   border: none;
-  border-radius: 50px;
+  border-radius: 50%;
   background-color: #282828;
   color: #ffffff;
   cursor: pointer;
-  font-size: 12px; /* Adjust font size */
+  font-size: 12px;
   transition: background-color 0.3s;
+  width: 50px; /* Set size */
+  height: 50px; /* Set size */
 }
 
 button:hover {
@@ -156,91 +160,101 @@ button#next-btn,
 button#shuffle-btn {
   background-color: transparent;
   background-size: cover;
-  width: 50px; /* Ensure consistent size */
-  height: 50px; /* Ensure consistent size */
-  border: none; /* Remove border */
-  position: relative; /* Change to relative positioning */
-  bottom: auto; /* Reset position */
-  left: auto; /* Reset position */
-  transform: none; /* Reset transform */
+  border: none;
 }
 
+/* Adjust positioning of buttons to be centered and spaced out on mobile */
 button#play-pause-btn {
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
+  background-image: url('play.png'); /* Ensure the path is correct */
+  background-size: contain;
 }
 
 button#play-pause-btn.play {
-  background-image: url('play.png'); /* Ensure the path is correct */
+  background-image: url('play.png');
 }
 
 button#play-pause-btn.pause {
-  background-image: url('pause.png'); /* Ensure the path is correct */
-}
-
-button#play-pause-btn:hover {
-  background-color: transparent;
+  background-image: url('pause.png');
 }
 
 button#prev-btn {
-  background-image: url('previous.png'); /* Ensure the path is correct */
-  left: calc(47% - 50px); /* Adjust position */
-}
-
-button#prev-btn:hover {
-  background-color: transparent;
+  background-image: url('previous.png');
+  background-size: contain;
 }
 
 button#next-btn {
-  background-image: url('next.png'); /* Ensure the path is correct */
-  left: calc(50% + 50px); /* Adjust position */
-}
-
-button#next-btn:hover {
-  background-color: transparent;
+  background-image: url('next.png');
+  background-size: contain;
 }
 
 button#shuffle-btn {
-  background-image: url('shuffle.png'); /* Ensure the path is correct */
-  left: calc(50% + 160px); /* Adjust position */
+  background-image: url('shuffle.png');
+  background-size: contain;
 }
 
-button#shuffle-btn:hover {
-  background-color: transparent;
+/* Adjust the layout for mobile */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Stack header elements vertically */
+    align-items: center;
+  }
+
+  .header .logo-container {
+    margin-bottom: 10px; /* Add margin to separate elements */
+  }
+
+  .search-container {
+    width: 100%; /* Full width for mobile */
+    transform: translateX(0); /* Reset transform */
+  }
+
+  .main-container {
+    padding: 10px; /* Adjust padding */
+  }
+
+  .player-container {
+    padding: 10px; /* Adjust padding */
+  }
+
+  .player {
+    flex-direction: column; /* Stack player elements vertically */
+    padding: 10px; /* Adjust padding */
+  }
+
+  .controls {
+    justify-content: space-evenly; /* Space buttons evenly */
+    gap: 10px; /* Adjust gap between buttons */
+  }
+
+  /* Adjust button sizes for mobile */
+  button {
+    width: 40px; /* Adjust size for mobile */
+    height: 40px; /* Adjust size for mobile */
+  }
+
+  /* Make sure the play-pause button is centered properly */
+  button#play-pause-btn {
+    margin: 0 auto;
+  }
+
+  .song-list {
+    padding: 20px; /* Adjust padding */
+    left: 0; /* Reset left position */
+    transform: none; /* Reset transform */
+  }
+
+  .my-playlist-container {
+    padding: 20px; /* Adjust padding */
+    left: 0; /* Reset left position */
+    transform: none; /* Reset transform */
+  }
+
+  .my-playlist {
+    padding: 20px; /* Adjust padding */
+  }
 }
 
-button#shuffle-btn.active {
-  background-color: transparent;
-}
-
-button.add-btn {
-  background-color: #1db954; /* Change to match the overall design */
-  color: #ffffff;
-  margin-left: 10px;
-  border-radius: 5px; /* Add rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
-}
-
-button.add-btn:hover {
-  background-color: #1aa34a; /* Slightly darker shade for hover effect */
-}
-
-button.remove-btn {
-  background-color: #ff4757;
-  margin-left: 10px;
-  border-radius: 5px; /* Add rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
-}
-
-button.remove-btn:hover {
-  background-color: #ff6b81;
-}
-
-audio {
-  margin: 0 10px; /* Adjust margin */
-  width: auto; /* Adjust width */
-}
-
+/* Song list */
 .song-list {
   display: flex;
   flex-direction: column;
@@ -300,121 +314,4 @@ audio {
 
 .song-list li:hover {
   background-color: #333333;
-}
-
-.my-playlist-container {
-  position: absolute;
-  top: 150px; /* Adjust top position */
-  left: 20px;
-  width: 100%;
-  max-width: 600px; /* Set max-width */
-  background-color: #1e1e1e; /* Set background */
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-}
-
-.my-playlist {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-.my-playlist li {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  background-color: #282828;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.my-playlist li:hover {
-  background-color: #333333;
-}
-
-.my-playlist button {
-  padding: 10px;
-  margin-left: 10px;
-}
-
-.volume-slider {
-  width: 120px; /* Set slider width */
-  margin: 0 10px; /* Adjust margin */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column; /* Stack header elements vertically */
-    align-items: center;
-  }
-
-  .header .logo-container {
-    margin-bottom: 10px; /* Add margin to separate elements */
-  }
-
-  .search-container {
-    width: 100%; /* Full width for mobile */
-    transform: translateX(0); /* Reset transform */
-  }
-
-  .main-container {
-    padding: 10px; /* Adjust padding */
-  }
-
-  .player-container {
-    padding: 10px; /* Adjust padding */
-  }
-
-  .player {
-    flex-direction: column; /* Stack player elements vertically */
-    padding: 10px; /* Adjust padding */
-  }
-
-  .controls {
-    margin: 10px 0; /* Adjust margin */
-    flex-direction: row; /* Arrange control buttons in a row */
-    justify-content: space-evenly; /* Distribute control buttons evenly */
-    width: 100%; /* Ensure controls fit within the player */
-  }
-
-  button#play-pause-btn,
-  button#prev-btn,
-  button#next-btn,
-  button#shuffle-btn {
-    width: 40px; /* Adjust size for mobile */
-    height: 40px; /* Adjust size for mobile */
-    margin: 0 8px; /* Ensure buttons have equal spacing */
-  }
-
-  .song-list,
-  .my-playlist-container {
-    padding: 20px; /* Adjust padding */
-    left: 0; /* Reset left position */
-    transform: none; /* Reset transform */
-    width: 100%; /* Ensure list takes full width */
-  }
-
-  .song-list button,
-  .my-playlist button {
-    padding: 10px;
-    width: 100%; /* Ensure buttons fit inside the list */
-    text-align: left; /* Align text to the left for buttons */
-  }
-
-  .song-list,
-  .my-playlist {
-    padding: 20px; /* Adjust padding */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  }
-}
-
-/* Responsive button sizes for mobile */
-button#play-pause-btn,
-button#prev-btn,
-button#next-btn,
-button#shuffle-btn {
-  width: 40px; /* Reduce button size on mobile */
-  height: 40px; /* Reduce button size on mobile */
 }
