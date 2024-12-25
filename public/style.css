@@ -1,3 +1,4 @@
+/* General styling */
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   background-color: #121212;
@@ -301,94 +302,48 @@ audio {
   background-color: #333333;
 }
 
-.song-list li.active,
-.my-playlist li.active {
-  background-color: #1db954; /* Highlight color */
-}
-
 .my-playlist-container {
-  width: 100%; /* Change to 100% for mobile */
-  max-width: 600px; /* Set maximum width */
+  position: absolute;
+  top: 150px; /* Adjust top position */
+  left: 20px;
+  width: 100%;
+  max-width: 600px; /* Set max-width */
+  background-color: #1e1e1e; /* Set background */
+  border-radius: 10px;
   padding: 20px;
-  position: relative; /* Change to relative for mobile */
-  top: 20px; /* Adjust position */
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-  height: auto; /* Adjust height */
-  overflow-y: auto; /* Add vertical scroll if content overflows */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
 }
 
 .my-playlist {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  background-color: #1e1e1e; /* Add background color */
-  border-radius: 10px; /* Add rounded edges */
-  padding: 20px; /* Adjust padding */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
-  min-height: 300px; /* Set minimum height */
-}
-
-.my-playlist h2 {
-  margin-bottom: 10px;
-}
-
-.my-playlist ul {
-  list-style-type: none;
-  padding: 0;
 }
 
 .my-playlist li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px;
   background-color: #282828;
-  border: none;
   border-radius: 5px;
-  margin: 5px 0;
-  cursor: pointer;
   transition: background-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
 .my-playlist li:hover {
   background-color: #333333;
 }
 
+.my-playlist button {
+  padding: 10px;
+  margin-left: 10px;
+}
+
 .volume-slider {
-  position: relative; /* Change to relative positioning */
-  right: auto; /* Reset position */
-  bottom: auto; /* Reset position */
-  width: 100px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: #ffffff;
-  height: 5px;
-  border-radius: 5px;
-  outline: none;
-  opacity: 0.7;
-  transition: opacity 0.2s;
+  width: 120px; /* Set slider width */
+  margin: 0 10px; /* Adjust margin */
 }
 
-.volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 15px;
-  height: 15px;
-  background: #ffffff;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-.volume-slider::-moz-range-thumb {
-  width: 15px;
-  height: 15px;
-  background: #ffffff;
-  cursor: pointer;
-  border-radius: 50%;
-}
-
-/* Media queries for mobile devices */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .header {
     flex-direction: column; /* Stack header elements vertically */
@@ -420,7 +375,8 @@ audio {
   .controls {
     margin: 10px 0; /* Adjust margin */
     flex-direction: row; /* Arrange control buttons in a row */
-    justify-content: space-around; /* Distribute control buttons evenly */
+    justify-content: space-evenly; /* Distribute control buttons evenly */
+    width: 100%; /* Ensure controls fit within the player */
   }
 
   button#play-pause-btn,
@@ -429,21 +385,36 @@ audio {
   button#shuffle-btn {
     width: 40px; /* Adjust size for mobile */
     height: 40px; /* Adjust size for mobile */
+    margin: 0 8px; /* Ensure buttons have equal spacing */
   }
 
-  .song-list {
-    padding: 20px; /* Adjust padding */
-    left: 0; /* Reset left position */
-    transform: none; /* Reset transform */
-  }
-
+  .song-list,
   .my-playlist-container {
     padding: 20px; /* Adjust padding */
     left: 0; /* Reset left position */
     transform: none; /* Reset transform */
+    width: 100%; /* Ensure list takes full width */
   }
 
+  .song-list button,
+  .my-playlist button {
+    padding: 10px;
+    width: 100%; /* Ensure buttons fit inside the list */
+    text-align: left; /* Align text to the left for buttons */
+  }
+
+  .song-list,
   .my-playlist {
     padding: 20px; /* Adjust padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
   }
+}
+
+/* Responsive button sizes for mobile */
+button#play-pause-btn,
+button#prev-btn,
+button#next-btn,
+button#shuffle-btn {
+  width: 40px; /* Reduce button size on mobile */
+  height: 40px; /* Reduce button size on mobile */
 }
