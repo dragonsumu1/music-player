@@ -243,7 +243,7 @@ audio {
 .song-list {
   display: flex;
   flex-direction: column;
-  margin-top: 200px;
+  margin-top: 500px;
   width: 100%; /* Change to 100% for mobile */
   max-width: 600px; /* Set maximum width */
   background-color: #1e1e1e; /* Add background color */
