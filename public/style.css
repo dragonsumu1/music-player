@@ -170,11 +170,17 @@ body {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  width: 30px; /* Ensure consistent size */
+  height: 30px; /* Ensure consistent size */
+  background-size: cover;
 }
 
-.control-btn img {
-  width: 30px; /* Set the size of the button images */
-  height: 30px;
+button#shuffle-btn {
+  background-image: url('shuffle.png'); /* Ensure the path is correct */
+}
+
+button#shuffle-btn:hover {
+  background-color: transparent;
 }
 
 button {
@@ -187,10 +193,6 @@ button {
   cursor: pointer;
   font-size: 12px; /* Adjust font size */
   transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #333333;
 }
 
 button#prev-btn,

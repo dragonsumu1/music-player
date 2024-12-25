@@ -54,5 +54,25 @@
         "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/Samantha Ebert  - Flowers (Official Lyric Video).mp3"
       }
     ]
+  },
+  "test": {
+    "playlist": [
+      {
+        "name": "Adie - Paraluman (Official Lyric Video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/Adie - Paraluman (Official Lyric Video).mp3"
+      },
+      {
+        "name": "Alas Dose - Cup of Joe (Official Lyric Video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/Alas Dose - Cup of Joe (Official Lyric Video).mp3"
+      },
+      {
+        "name": "Arthur Miguel - Lihim (Lyrics).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/Arthur Miguel - Lihim (Lyrics).mp3"
+      },
+      {
+        "name": "Ben & Ben- Maybe The Night (Lyric Video).mp3",
+        "url": "https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/Ben & Ben- Maybe The Night (Lyric Video).mp3"
+      }
+    ]
   }
 }

@@ -12,12 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const profilesList = document.getElementById('profiles-list');
   const profilesUl = document.getElementById('profiles');
   const saveProfileBtn = document.getElementById('save-profile-btn');
+  const shuffleBtn = document.getElementById('shuffle-btn');
   const volumeControl = document.getElementById('volume-control');
   let currentSongIndex = 0;
   let songs = [];
   let playlistSongs = [];
   let isPlaylistActive = false;
   let currentProfile = '';
+  let isShuffled = false;
 
   // Fetch the list of songs from the server
   fetch('/api/music')
@@ -109,6 +111,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     renderPlaylist();
   }
+
+  // Shuffle array
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  // Shuffle songs
+  shuffleBtn.addEventListener('click', () => {
+    if (isPlaylistActive) {
+      shuffleArray(playlistSongs);
+      renderPlaylist();
+    } else {
+      shuffleArray(songs);
+      renderSongList();
+    }
+    isShuffled = true;
+  });
 
   // Filter songs based on search input
   searchInput.addEventListener('input', (e) => {
