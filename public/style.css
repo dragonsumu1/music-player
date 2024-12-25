@@ -349,7 +349,7 @@ button.remove-btn:hover {
 
   .controls audio {
     width: 100%; /* Ensures it spans the container */
-    max-width: 600px;
+    max-width: 200px;
   }
 
   .song-list {
