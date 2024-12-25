@@ -3,6 +3,7 @@
   "builds": [
     {
       "src": "api/**/*.js",
+      "src": "api/server.js",
       "use": "@vercel/node"
     },
     {
@@ -17,13 +18,11 @@
     },
     {
       "src": "/api/profile/(.*)",
-      "dest": "/api/profile/$1"
-      //"dest": "/server.js/$1"
+      "dest": "/server.js/$1"
     },
     {
       "src": "/api/profiles",
-      "dest": "/api/profiles"
-      //"dest": "/server.js/profiles"
+      "dest": "/server.js/profiles"
     },
     {
       "src": "/(.*)",
