@@ -160,6 +160,32 @@ button:hover {
   background-color: #333333;
 }
 
+button#prev-btn,
+button#next-btn {
+  background-color: transparent;
+  background-size: cover;
+  width: 30px; /* Ensure consistent size */
+  height: 30px; /* Ensure consistent size */
+  border: none; /* Remove border */
+  cursor: pointer;
+}
+
+button#prev-btn {
+  background-image: url('previous.png'); /* Ensure the path is correct */
+}
+
+button#prev-btn:hover {
+  background-color: transparent;
+}
+
+button#next-btn {
+  background-image: url('next.png'); /* Ensure the path is correct */
+}
+
+button#next-btn:hover {
+  background-color: transparent;
+}
+
 button.add-btn {
   background-color: #1db954; /* Change to match the overall design */
   color: #ffffff;
@@ -339,7 +365,7 @@ button.remove-btn:hover {
 
   audio {
     margin: 10px 0;
-    width: 500%; /* Ensures it takes up full width of the parent container */
+    width: 100%; /* Ensures it takes up full width of the parent container */
     max-width: 600px; /* Limits the maximum width */
     height: auto; /* Ensures the aspect ratio is maintained */
     display: block !important; /* Ensures it behaves like a block-level element */
