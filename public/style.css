@@ -77,7 +77,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
-  background-color: #09411d;
+  background-color: #0a1b10;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5); /* Add shadow */
   z-index: 1000;
 }
