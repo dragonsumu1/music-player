@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Music Player</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.css">
 </head>
 <body>
   <div class="header">
@@ -31,20 +32,20 @@
   <div class="player-container">
     <div class="player">
       <div class="song-title">
-        <span id="song-title-text"></span>
+        <span id="song-title-text" data-amplitude-song-info="name"></span>
       </div>
       <div class="controls">
-        <button id="prev-btn" class="control-btn">
+        <button id="prev-btn" class="amplitude-prev">
         </button>
-        <audio id="audio-player" controls>
-          <source id="audio-source" src="" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <button id="next-btn" class="control-btn">
+        <div id="amplitude-player" class="amplitude-player">
+          <div class="amplitude-play-pause" id="play-pause"></div>
+        </div>
+        <button id="next-btn" class="amplitude-next">
         </button>
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/amplitudejs@5.3.2/dist/amplitude.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
