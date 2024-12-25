@@ -92,9 +92,9 @@ body {
   border-radius: 10px; /* Add rounded corners */
   text-align: center;
   width: 100%;
-  max-width: 1200px;
+  max-width: 600px; /* Set maximum width */
   position: relative; /* Add relative positioning */
-  flex-wrap: nowrap; /* Prevent wrapping of elements */
+  flex-direction: column; /* Stack player elements vertically */
 }
 
 .song-title {
@@ -104,6 +104,7 @@ body {
   overflow: hidden;
   position: relative;
   flex: 1; /* Allow the song title to take available space */
+  text-align: center; /* Center text */
 }
 
 .song-title span {
@@ -236,7 +237,7 @@ button.remove-btn:hover {
 }
 
 audio {
-  margin: 0 10px; /* Adjust margin */
+  margin: 10px 0; /* Adjust margin */
   width: 100%; /* Set width to 100% */
   max-width: 600px; /* Set maximum width */
   height: 50px; /* Set height */
@@ -254,7 +255,7 @@ audio {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
   position: relative; /* Change to relative for mobile */
   top: 0; /* Adjust position */
-  left: 50%; /* Center horizontally */
+  left: 45%; /* Center horizontally */
   transform: translateX(-50%); /* Center horizontally */
   height: auto; /* Adjust height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
