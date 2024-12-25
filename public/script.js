@@ -53,14 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
       li.appendChild(addButton);
       li.addEventListener('click', () => {
         isPlaylistActive = false;
-        currentSongIndex = index;
+        currentSongIndex = songs.findIndex(s => s.name === song.name); // Find the correct index
         // Stop the currently playing song
         Amplitude.stop();
         Amplitude.init({
           songs: songs
         });
-        Amplitude.playSongAtIndex(index);
-        highlightActiveSong(index);
+        Amplitude.playSongAtIndex(currentSongIndex);
+        highlightActiveSong(currentSongIndex);
+        searchInput.value = ''; // Clear the search bar
+        renderSongList(); // Re-render the song list to show all songs
+        highlightActiveSong(currentSongIndex); // Highlight and center the current song
       });
       songList.appendChild(li);
     });
