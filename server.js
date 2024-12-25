@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs'); // Correct the import statement
 
 const app = express();
-const musicDir = path.join(__dirname, 'public', 'music');
+const musicDir = path.join(__dirname, 'music');
 
 // Serve static files like CSS and JS
 app.use(express.static(path.join(__dirname, 'public')));
@@ -15,6 +15,7 @@ app.get('/music/:song', (req, res) => {
   
   fs.access(songPath, fs.constants.F_OK, (err) => {
     if (err) {
+      console.error(`Song not found: ${songPath}`);
       return res.status(404).send('Song not found');
     }
 
@@ -26,6 +27,7 @@ app.get('/music/:song', (req, res) => {
 app.get('/music', (req, res) => {
   fs.readdir(musicDir, (err, files) => {
     if (err) {
+      console.error('Failed to read music directory:', err);
       return res.status(500).json({ error: 'Failed to read music directory' });
     }
     const songs = files.filter(file => path.extname(file) === '.mp3');
@@ -36,6 +38,12 @@ app.get('/music', (req, res) => {
 // Serve the index.html page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
