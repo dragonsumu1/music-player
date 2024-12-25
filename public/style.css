@@ -94,7 +94,8 @@ body {
   width: 100%;
   max-width: 600px; /* Set maximum width */
   position: relative; /* Add relative positioning */
-  flex-direction: column; /* Stack player elements vertically */
+  flex-direction: row; /* Align player elements horizontally */
+  justify-content: center; /* Center elements horizontally */
 }
 
 .song-title {
@@ -160,41 +161,18 @@ button:hover {
   background-color: #333333;
 }
 
-button#play-pause-btn,
 button#prev-btn,
-button#next-btn,
-button#shuffle-btn {
+button#next-btn {
   background-color: transparent;
   background-size: cover;
-  width: 50px; /* Ensure consistent size */
-  height: 50px; /* Ensure consistent size */
+  width: 30px; /* Ensure consistent size */
+  height: 30px; /* Ensure consistent size */
   border: none; /* Remove border */
-  position: relative; /* Change to relative positioning */
-  bottom: auto; /* Reset position */
-  left: auto; /* Reset position */
-  transform: none; /* Reset transform */
-}
-
-button#play-pause-btn {
-  left: 50%; /* Center horizontally */
-  transform: translateX(-50%); /* Center horizontally */
-}
-
-button#play-pause-btn.play {
-  background-image: url('play.png'); /* Ensure the path is correct */
-}
-
-button#play-pause-btn.pause {
-  background-image: url('pause.png'); /* Ensure the path is correct */
-}
-
-button#play-pause-btn:hover {
-  background-color: transparent;
+  cursor: pointer;
 }
 
 button#prev-btn {
   background-image: url('previous.png'); /* Ensure the path is correct */
-  left: calc(47% - 50px); /* Adjust position */
 }
 
 button#prev-btn:hover {
@@ -203,23 +181,9 @@ button#prev-btn:hover {
 
 button#next-btn {
   background-image: url('next.png'); /* Ensure the path is correct */
-  left: calc(50% + 50px); /* Adjust position */
 }
 
 button#next-btn:hover {
-  background-color: transparent;
-}
-
-button#shuffle-btn {
-  background-image: url('shuffle.png'); /* Ensure the path is correct */
-  left: calc(50% + 160px); /* Adjust position */
-}
-
-button#shuffle-btn:hover {
-  background-color: transparent;
-}
-
-button#shuffle-btn.active {
   background-color: transparent;
 }
 
@@ -244,13 +208,6 @@ button.remove-btn {
 
 button.remove-btn:hover {
   background-color: #ff6b81;
-}
-
-audio {
-  margin: 10px 0; /* Adjust margin */
-  width: 100%; /* Set width to 100% */
-  max-width: 600px; /* Set maximum width */
-  height: 50px; /* Set height */
 }
 
 .song-list {
@@ -408,9 +365,13 @@ audio {
   }
 
   audio {
-    width: 100%; /* Set width to 100% */
-    max-width: 100%; /* Set maximum width to 100% */
-    height: 50px; /* Set height */
+    margin: 10px 0;
+    max-width: 600px; /* Limits the maximum width */
+    display: block; /* Ensures it behaves like a block-level element */
+    outline: none; /* Removes focus outline */
+    visibility: visible; /* Explicitly set visibility */
+    width: auto; /* Adjust width */
+    height: auto; /* Adjust height */
   }
 
   .song-list {
