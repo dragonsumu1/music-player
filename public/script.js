@@ -112,12 +112,14 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPlaylist();
   }
 
-  // Shuffle array
+  // Shuffle array and update currentSongIndex
   function shuffleArray(array) {
+    const currentSong = array[currentSongIndex];
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [array[i], array[j]] = [array[j], array[i]];
     }
+    currentSongIndex = array.indexOf(currentSong);
   }
 
   // Shuffle songs
@@ -130,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderSongList();
     }
     isShuffled = true;
+    highlightActiveSong(currentSongIndex, isPlaylistActive);
   });
 
   // Filter songs based on search input
@@ -141,15 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Play the previous song
   prevBtn.addEventListener('click', () => {
-    if (isPlaylistActive) {
-      currentSongIndex = (currentSongIndex - 1 + playlistSongs.length) % playlistSongs.length;
-      Amplitude.playSongAtIndex(currentSongIndex);
-      highlightActiveSong(currentSongIndex, true);
-    } else {
-      currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-      Amplitude.playSongAtIndex(currentSongIndex);
-      highlightActiveSong(currentSongIndex);
-    }
+    const activeSongs = isPlaylistActive ? playlistSongs : songs;
+    currentSongIndex = (currentSongIndex - 1 + activeSongs.length) % activeSongs.length;
+    Amplitude.playSongAtIndex(currentSongIndex);
+    highlightActiveSong(currentSongIndex, isPlaylistActive);
   });
 
   // Play the next song
