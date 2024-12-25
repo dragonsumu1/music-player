@@ -1,17 +1,18 @@
-const path = require('path');
-const fs = require('fs');
+const https = require('https');
 
 export default function handler(req, res) {
   const { song } = req.query;
-  const musicDir = path.join(process.cwd(), 'music');
-  const songPath = path.join(musicDir, song);
+  const githubRawUrl = `https://raw.githubusercontent.com/your-username/your-repo/main/music/${song}`;
 
-  fs.access(songPath, fs.constants.F_OK, (err) => {
-    if (err) {
-      console.error(`Song not found: ${songPath}`);
-      return res.status(404).send('Song not found');
+  https.get(githubRawUrl, (response) => {
+    if (response.statusCode === 200) {
+      res.setHeader('Content-Type', 'audio/mpeg');
+      response.pipe(res);
+    } else {
+      res.status(response.statusCode).send('Song not found');
     }
-
-    res.sendFile(songPath);
+  }).on('error', (err) => {
+    console.error(`Error fetching song: ${err.message}`);
+    res.status(500).send('Internal Server Error');
   });
 }
