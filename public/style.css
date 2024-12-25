@@ -415,12 +415,14 @@ audio {
   .player {
     flex-direction: column; /* Stack player elements vertically */
     padding: 10px; /* Adjust padding */
+    align-items: center; /* Center elements horizontally */
   }
 
   .controls {
     margin: 10px 0; /* Adjust margin */
     flex-direction: row; /* Arrange control buttons in a row */
-    justify-content: space-around; /* Distribute control buttons evenly */
+    justify-content: center; /* Center control buttons */
+    flex-wrap: wrap; /* Allow wrapping of control buttons */
   }
 
   button#play-pause-btn,
@@ -429,6 +431,11 @@ audio {
   button#shuffle-btn {
     width: 40px; /* Adjust size for mobile */
     height: 40px; /* Adjust size for mobile */
+    margin: 5px; /* Adjust margin for mobile */
+  }
+
+  .volume-slider {
+    margin-top: 10px; /* Add margin to separate from control buttons */
   }
 
   .song-list {
