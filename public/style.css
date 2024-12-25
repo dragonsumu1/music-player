@@ -67,6 +67,7 @@ body {
   margin-top: 100px; /* Adjust margin to account for fixed header */
   padding: 20px;
   justify-content: center; /* Center the main container */
+  align-items: center; /* Center the main container horizontally */
 }
 
 .player-container {
@@ -93,6 +94,7 @@ body {
   width: 100%;
   max-width: 1200px;
   position: relative; /* Add relative positioning */
+  flex-wrap: wrap; /* Allow wrapping of elements */
 }
 
 .song-title {
@@ -127,6 +129,7 @@ body {
   justify-content: center;
   align-items: center;
   margin: 0 10px; /* Adjust margin */
+  flex-wrap: wrap; /* Allow wrapping of control buttons */
 }
 
 button {
@@ -154,8 +157,10 @@ button#shuffle-btn {
   width: 50px; /* Ensure consistent size */
   height: 50px; /* Ensure consistent size */
   border: none; /* Remove border */
-  position: fixed; /* Add fixed positioning */
-  bottom: 20px; /* Adjust position */
+  position: relative; /* Change to relative positioning */
+  bottom: auto; /* Reset position */
+  left: auto; /* Reset position */
+  transform: none; /* Reset transform */
 }
 
 button#play-pause-btn {
@@ -237,16 +242,17 @@ audio {
 .song-list {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 200px;
   width: 100%; /* Change to 100% for mobile */
+  max-width: 600px; /* Set maximum width */
   background-color: #1e1e1e; /* Add background color */
   border-radius: 10px; /* Add rounded edges */
   padding: 20px; /* Adjust padding */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
   position: relative; /* Change to relative for mobile */
   top: 0; /* Adjust position */
-  left: 0; /* Adjust position */
-  right: 0; /* Adjust position */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
   height: auto; /* Adjust height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
 }
@@ -301,10 +307,12 @@ audio {
 
 .my-playlist-container {
   width: 100%; /* Change to 100% for mobile */
+  max-width: 600px; /* Set maximum width */
   padding: 20px;
   position: relative; /* Change to relative for mobile */
-  top: 0; /* Adjust position */
-  right: 0; /* Adjust position */
+  top: 20px; /* Adjust position */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
   height: auto; /* Adjust height */
   overflow-y: auto; /* Add vertical scroll if content overflows */
 }
@@ -347,9 +355,9 @@ audio {
 }
 
 .volume-slider {
-  position: fixed; /* Fix the position */
-  right: 380px; /* Position it 20px from the right */
-  bottom: 40px; /* Position it 20px from the bottom */
+  position: relative; /* Change to relative positioning */
+  right: auto; /* Reset position */
+  bottom: auto; /* Reset position */
   width: 100px;
   -webkit-appearance: none;
   appearance: none;
@@ -410,14 +418,20 @@ audio {
 
   .controls {
     margin: 10px 0; /* Adjust margin */
+    flex-direction: row; /* Arrange control buttons in a row */
+    justify-content: space-around; /* Distribute control buttons evenly */
   }
 
   .song-list {
     padding: 20px; /* Adjust padding */
+    left: 0; /* Reset left position */
+    transform: none; /* Reset transform */
   }
 
   .my-playlist-container {
     padding: 20px; /* Adjust padding */
+    left: 0; /* Reset left position */
+    transform: none; /* Reset transform */
   }
 
   .my-playlist {
