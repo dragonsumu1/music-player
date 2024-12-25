@@ -369,9 +369,9 @@ button.remove-btn:hover {
     width: 100%; /* Ensures it takes up full width of the parent container */
     max-width: 600px; /* Limits the maximum width */
     height: auto; /* Ensures the aspect ratio is maintained */
-    display: block; /* Ensures it behaves like a block-level element */
+    display: block !important; /* Ensures it behaves like a block-level element */
     outline: none; /* Removes focus outline */
-    visibility: visible; /* Explicitly set visibility */
+    visibility: visible !important; /* Explicitly set visibility */
   }
 
   .song-list {
