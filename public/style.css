@@ -137,17 +137,15 @@ body {
 }
 
 button {
-  margin: 0;
-  padding: 10px; /* Adjust padding */
+  margin: 0 5px; /* Adjust margin */
+  padding: 5px 10px; /* Adjust padding */
   border: none;
-  border-radius: 50%;
+  border-radius: 50px;
   background-color: #282828;
   color: #ffffff;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 12px; /* Adjust font size */
   transition: background-color 0.3s;
-  width: 50px; /* Set size */
-  height: 50px; /* Set size */
 }
 
 button:hover {
@@ -160,7 +158,13 @@ button#next-btn,
 button#shuffle-btn {
   background-color: transparent;
   background-size: cover;
-  border: none;
+  width: 50px; /* Ensure consistent size */
+  height: 50px; /* Ensure consistent size */
+  border: none; /* Remove border */
+  position: relative; /* Change to relative positioning */
+  bottom: auto; /* Reset position */
+  left: auto; /* Reset position */
+  transform: none; /* Reset transform */
 }
 
 /* Adjust positioning of buttons to be centered and spaced out on mobile */
@@ -219,22 +223,27 @@ button#shuffle-btn {
   .player {
     flex-direction: column; /* Stack player elements vertically */
     padding: 10px; /* Adjust padding */
+    align-items: center; /* Center elements horizontally */
   }
 
   .controls {
-    justify-content: space-evenly; /* Space buttons evenly */
-    gap: 10px; /* Adjust gap between buttons */
+    margin: 10px 0; /* Adjust margin */
+    flex-direction: row; /* Arrange control buttons in a row */
+    justify-content: center; /* Center control buttons */
+    flex-wrap: nowrap; /* Prevent wrapping of control buttons */
   }
 
-  /* Adjust button sizes for mobile */
-  button {
+  button#play-pause-btn,
+  button#prev-btn,
+  button#next-btn,
+  button#shuffle-btn {
     width: 40px; /* Adjust size for mobile */
     height: 40px; /* Adjust size for mobile */
+    margin: 5px; /* Adjust margin for mobile */
   }
 
-  /* Make sure the play-pause button is centered properly */
-  button#play-pause-btn {
-    margin: 0 auto;
+  .volume-slider {
+    margin-top: 10px; /* Add margin to separate from control buttons */
   }
 
   .song-list {
