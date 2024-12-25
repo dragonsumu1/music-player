@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     audioPlayer.play();
     updateSongTitle(song);
     updateActiveSong();
+    updatePlayPauseButton();
   }
 
   // Update the song title display
@@ -114,6 +115,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Update the play/pause button state
+  function updatePlayPauseButton() {
+    if (audioPlayer.paused) {
+      playPauseBtn.classList.remove('pause');
+      playPauseBtn.classList.add('play');
+    } else {
+      playPauseBtn.classList.remove('play');
+      playPauseBtn.classList.add('pause');
+    }
+  }
+
   // Play the previous song
   prevBtn.addEventListener('click', () => {
     currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
@@ -146,4 +158,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     playSong(currentSongIndex);
   });
+
+  // Update play/pause button state when audio is played or paused
+  audioPlayer.addEventListener('play', updatePlayPauseButton);
+  audioPlayer.addEventListener('pause', updatePlayPauseButton);
 });
