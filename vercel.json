@@ -24,10 +24,6 @@
       "dest": "/server.js"
     },
     {
-      "src": "/api/profiles",
-      "dest": "/server.js"
-    },
-    {
       "src": "/(.*)",
       "dest": "/public/$1"
     }

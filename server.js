@@ -83,18 +83,6 @@ app.post('/api/profile/:username', (req, res) => {
   });
 });
 
-// List all profiles
-app.get('/api/profiles', (req, res) => {
-  fs.readFile(profilesFile, 'utf8', (err, data) => {
-    if (err) {
-      console.error('Failed to read profiles file:', err);
-      return res.status(500).json({ error: 'Failed to read profiles file' });
-    }
-    const profiles = JSON.parse(data);
-    res.json(profiles);
-  });
-});
-
 // Serve the index.html page
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

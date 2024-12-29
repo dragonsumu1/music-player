@@ -8,12 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileInput = document.getElementById('profile');
   const createProfileBtn = document.getElementById('create-profile-btn');
   const showProfileBtn = document.getElementById('show-profile-btn');
-  const listProfilesBtn = document.getElementById('list-profiles-btn');
-  const profilesList = document.getElementById('profiles-list');
-  const profilesUl = document.getElementById('profiles');
   const saveProfileBtn = document.getElementById('save-profile-btn');
   const shuffleBtn = document.getElementById('shuffle-btn');
-  const volumeControl = document.getElementById('volume-control');
+  // Remove the volume control element
+  // const volumeControl = document.getElementById('volume-control');
   let currentSongIndex = 0;
   let songs = [];
   let playlistSongs = [];
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         url: `https://raw.githubusercontent.com/dragonsumu1/music-player/main/music/${song}`
       }));
       Amplitude.init({
-        songs: songs
+        songs: playlistSongs
       });
       renderSongList();
     });
@@ -54,16 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
       li.addEventListener('click', () => {
         isPlaylistActive = false;
         currentSongIndex = songs.findIndex(s => s.name === song.name); // Find the correct index
+        // Move the clicked song to the top of the list
+        const clickedSong = songs.splice(currentSongIndex, 1)[0];
+        songs.unshift(clickedSong);
+        currentSongIndex = 0; // Update the current song index to the top
         // Stop the currently playing song
         Amplitude.stop();
         Amplitude.init({
           songs: songs
         });
         Amplitude.playSongAtIndex(currentSongIndex);
-        highlightActiveSong(currentSongIndex);
         searchInput.value = ''; // Clear the search bar
         renderSongList(); // Re-render the song list to show all songs
-        highlightActiveSong(currentSongIndex); // Highlight and center the current song
+        highlightActiveSong(currentSongIndex); // Highlight the current song at the top
       });
       songList.appendChild(li);
     });
@@ -88,13 +89,18 @@ document.addEventListener('DOMContentLoaded', () => {
       li.addEventListener('click', () => {
         isPlaylistActive = true;
         currentSongIndex = index;
+        // Move the clicked song to the top of the playlist
+        const clickedSong = playlistSongs.splice(currentSongIndex, 1)[0];
+        playlistSongs.unshift(clickedSong);
+        currentSongIndex = 0; // Update the current song index to the top
         // Stop the currently playing song
         Amplitude.stop();
         Amplitude.init({
           songs: playlistSongs
         });
-        Amplitude.playSongAtIndex(index);
-        highlightActiveSong(index, true);
+        Amplitude.playSongAtIndex(currentSongIndex);
+        renderPlaylist(); // Re-render the playlist to show all songs
+        highlightActiveSong(currentSongIndex, true); // Highlight the current song at the top
       });
       myPlaylist.appendChild(li);
     });
@@ -102,9 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Add song to playlist
   function addToPlaylist(song) {
+    if (playlistSongs.some(s => s.name === song.name)) {
+      alert('Song is already in the playlist');
+      return;
+    }
     playlistSongs.push(song);
     renderPlaylist();
   }
+  
 
   // Remove song from playlist
   function removeFromPlaylist(li, song) {
@@ -117,21 +128,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Shuffle array and update currentSongIndex
   function shuffleArray(array) {
-    const currentSong = array[currentSongIndex];
-    for (let i = array.length - 1; i > 0; i--) {
+    const shuffled = [...array];
+    const currentSong = shuffled.splice(currentSongIndex, 1)[0]; // Remove the current song
+    for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    currentSongIndex = array.indexOf(currentSong);
+    shuffled.unshift(currentSong); // Place the current song at the top
+    currentSongIndex = 0; // Update currentSongIndex to the top
+    return shuffled;
   }
 
   // Shuffle songs
   shuffleBtn.addEventListener('click', () => {
     if (isPlaylistActive) {
-      shuffleArray(playlistSongs);
+      playlistSongs = shuffleArray(playlistSongs);
       renderPlaylist();
     } else {
-      shuffleArray(songs);
+      songs = shuffleArray(songs);
       renderSongList();
     }
     isShuffled = true;
@@ -296,24 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   }
 
-  // List profiles
-  function listProfiles() {
-    fetch('/api/profiles')
-      .then(response => response.json())
-      .then(profiles => {
-        profilesUl.innerHTML = '';
-        Object.keys(profiles).forEach(profile => {
-          const li = document.createElement('li');
-          li.textContent = profile;
-          profilesUl.appendChild(li);
-        });
-        profilesList.style.display = 'block';
-      })
-      .catch(err => {
-        console.error('Failed to list profiles:', err);
-      });
-  }
-
   // Event listeners for profile management
   profileInput.addEventListener('change', (e) => {
     currentProfile = e.target.value;
@@ -323,12 +319,4 @@ document.addEventListener('DOMContentLoaded', () => {
   createProfileBtn.addEventListener('click', createProfile);
   showProfileBtn.addEventListener('click', showProfile);
   saveProfileBtn.addEventListener('click', saveProfile);
-  listProfilesBtn.addEventListener('click', listProfiles);
-
-  // Handle volume control
-  volumeControl.addEventListener('input', function() {
-    const volumeValue = this.value / 100; // Scale to 0-1
-    console.log('Setting volume to:', volumeValue);
-    Amplitude.setVolume(volumeValue); // Adjust Amplitude volume
-});
 });

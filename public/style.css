@@ -372,11 +372,6 @@ button.remove-btn:hover {
   background-color: #333333;
 }
 
-.volume-slider {
-  width: 100px; /* Set the width of the volume slider */
-  margin-left: 10px; /* Add some margin to the left */
-}
-
 /* Media queries for mobile devices */
 @media (max-width: 768px) {
   .header {
